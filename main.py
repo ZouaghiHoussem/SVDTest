@@ -45,14 +45,18 @@ def plot_one_dataset(data,fig,title,rank_plot=1,nb_plots=3,plot_index=1, lim = (
 
 
 def svd(X):
-  # Data matrix X, X doesn't need to be 0-centered
-  #n, m = X.shape
-  # Compute full SVD
-  U, Sigma, Vh = linalg.svd(X, full_matrices=False)
-  # Transform X with SVD components
-  X_svd = np.dot(U, np.diag(Sigma))
-  print(X_svd.shape)
-  return X_svd
+    #https://hadrienj.github.io/posts/Deep-Learning-Book-Series-2.8-Singular-Value-Decomposition/
+    # Data matrix X, X doesn't need to be 0-centered
+    #n, m = X.shape
+    # Compute full SVD
+    U, Sigma, Vh = linalg.svd(X, full_matrices=False)
+    print("shape of :\n\t-Matrix:{}\n\t-U:{}\n\t-S:{}\n\t-V:{}".format(X.shape,U.shape,len(Sigma), Vh.shape))
+    print(np.dot(U.T,U))
+    print(np.dot(Vh.T,Vh))
+    # Transform X with SVD components
+    X_svd = np.dot(U, np.diag(Sigma))
+    print(X_svd.shape)
+    return X_svd
 
 
 def rotate(xy, radians):
